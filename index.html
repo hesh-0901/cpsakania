@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cellule Sakania - La Compassion Lubumbashi</title>
+    <title>Cellule Sakania - Tableau de Bord</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -46,10 +46,10 @@
                     <a href="#" class="text-stone hover:text-anti-flash-white transition px-1 py-5">Membres</a>
                 </div>
                 <div class="flex items-center gap-4">
-                    <button class="bg-pine hover:bg-bangladesh-green text-anti-flash-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 border border-mountain-meadow/20">
+                    <a href="formulaires/nouvelle-activite.html" class="bg-pine hover:bg-bangladesh-green text-anti-flash-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 border border-mountain-meadow/20">
                         <i data-lucide="plus-circle" class="w-4 h-4 text-caribbean-green"></i>
-                        <span class="hidden sm:inline">Nouvelle Activité</span>
-                    </button>
+                        <span>Nouvelle Activité</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="text-sm bg-dark-green border border-pine px-4 py-2 rounded-xl self-start flex items-center gap-2 text-stone">
                 <i data-lucide="calendar" class="w-4 h-4 text-mountain-meadow"></i>
-                <span>Samedi, 23 Mai 2026</span>
+                <span>Dimanche, 24 Mai 2026</span>
             </div>
         </div>
 
@@ -106,108 +106,31 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            <div class="lg:col-span-1 bg-dark-green border border-pine p-6 rounded-2xl h-fit">
-                <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                    <i data-lucide="file-plus" class="text-caribbean-green w-5 h-5"></i>
-                    Enregistrement Rapide
+        <div class="w-full bg-dark-green border border-pine p-6 rounded-2xl">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold flex items-center gap-2">
+                    <i data-lucide="history" class="text-mountain-meadow w-5 h-5"></i>
+                    Dernières Activités Enregistrées
                 </h3>
-                <form class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-stone mb-1">Type d'Activité</label>
-                        <select class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
-                            <option>Intercession & Prière</option>
-                            <option>Enseignement / Partage</option>
-                            <option>Affermissement</option>
-                            <option>Évangélisation de cellule</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-stone mb-1">Nombre de Présents</label>
-                        <input type="number" placeholder="Ex: 35" class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-stone mb-1">Nouvelles Décisions / Visiteurs</label>
-                        <input type="number" placeholder="Ex: 3" class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-stone mb-1">Sujet principal / Remarques</label>
-                        <textarea rows="3" placeholder="Résumé ou requêtes particulières..." class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition resize-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-mountain-meadow hover:bg-caribbean-green text-rich-black font-bold py-2.5 rounded-lg text-sm transition shadow-lg shadow-mountain-meadow/10">
-                        Soumettre le rapport
-                    </button>
-                </form>
+                <span class="text-xs text-stone bg-pine/50 px-3 py-1 rounded-full border border-pine">Mise à jour en direct</span>
             </div>
 
-            <div class="lg:col-span-2 bg-dark-green border border-pine p-6 rounded-2xl">
-                <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-lg font-bold flex items-center gap-2">
-                        <i data-lucide="history" class="text-mountain-meadow w-5 h-5"></i>
-                        Dernières Activités Enregistrées
-                    </h3>
-                    <a href="#" class="text-xs text-caribbean-green hover:underline">Voir tout</a>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="p-4 bg-rich-black/50 border border-pine rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-mountain-meadow/30 transition">
-                        <div class="flex items-start gap-3">
-                            <div class="p-2 bg-bangladesh-green/20 border border-bangladesh-green/40 rounded-lg text-caribbean-green mt-0.5">
-                                <i data-lucide="flame" class="w-4 h-4"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm">Intercession Hebdomadaire</h4>
-                                <p class="text-xs text-stone mt-0.5">Modérateur : Frère Christian — Présents : 42 fidèles</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between sm:justify-end gap-4">
-                            <span class="px-2.5 py-1 bg-mint/10 text-mint rounded-full text-xs font-medium border border-mint/20">Validé</span>
-                            <span class="text-xs text-stone">Hier, 18:30</span>
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-rich-black/50 border border-pine rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-mountain-meadow/30 transition">
-                        <div class="flex items-start gap-3">
-                            <div class="p-2 bg-bangladesh-green/20 border border-bangladesh-green/40 rounded-lg text-mountain-meadow mt-0.5">
-                                <i data-lucide="book-open" class="w-4 h-4"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm">Partage de la Parole & Communion</h4>
-                                <p class="text-xs text-stone mt-0.5">Thème : La Fidélité Divine — Présents : 38 fidèles</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between sm:justify-end gap-4">
-                            <span class="px-2.5 py-1 bg-mint/10 text-mint rounded-full text-xs font-medium border border-mint/20">Validé</span>
-                            <span class="text-xs text-stone">19 Mai, 18:00</span>
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-rich-black/50 border border-pine rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-mountain-meadow/30 transition">
-                        <div class="flex items-start gap-3">
-                            <div class="p-2 bg-bangladesh-green/20 border border-bangladesh-green/40 rounded-lg text-caribbean-green mt-0.5">
-                                <i data-lucide="compass" class="w-4 h-4"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm">Évangélisation de Proximité</h4>
-                                <p class="text-xs text-stone mt-0.5">Quartier Sakania — 5 nouvelles âmes gagnées !</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between sm:justify-end gap-4">
-                            <span class="px-2.5 py-1 bg-mint/10 text-mint rounded-full text-xs font-medium border border-mint/20">Validé</span>
-                            <span class="text-xs text-stone">16 Mai, 16:00</span>
-                        </div>
-                    </div>
+            <div id="liste-activites" class="space-y-4">
+                <div class="p-8 text-center text-stone text-sm flex flex-col items-center justify-center gap-3">
+                    <div class="w-6 h-6 border-2 border-caribbean-green border-t-transparent rounded-full animate-spin"></div>
+                    <span>Connexion à la base de données de la cellule...</span>
                 </div>
             </div>
-
         </div>
+
     </main>
 
     <footer class="border-t border-pine bg-dark-green/30 py-6 mt-12 text-center text-xs text-stone">
         <p>© 2026 Église La Compassion Lubumbashi — Cellule Sakania. Tous droits réservés.</p>
     </footer>
 
+    <script src="config/app.js" type="module"></script>
+    
     <script>
         lucide.createIcons();
     </script>

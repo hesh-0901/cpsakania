@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
     <title>Cellule Sakania - Tableau de Bord</title>
+    <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,6 +32,7 @@
     <nav class="border-b border-pine bg-dark-green/50 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
+                
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-bangladesh-green to-caribbean-green flex items-center justify-center shadow-lg shadow-caribbean-green/10">
                         <i data-lucide="church" class="w-4 h-4 text-rich-black font-bold"></i>
@@ -41,18 +42,40 @@
                         <span class="text-[10px] text-mountain-meadow uppercase tracking-widest block -mt-1">La Compassion Lubumbashi</span>
                     </div>
                 </div>
+
                 <div class="hidden md:flex items-center gap-6 text-sm font-medium">
                     <a href="#" class="text-caribbean-green border-b-2 border-caribbean-green px-1 py-5">Tableau de bord</a>
                     <a href="#" class="text-stone hover:text-anti-flash-white transition px-1 py-5">Rapports</a>
                     <a href="#" class="text-stone hover:text-anti-flash-white transition px-1 py-5">Membres</a>
+                    <a href="#" class="text-stone hover:text-anti-flash-white transition px-1 py-5">Paramètres</a>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="formulaires/nouvelle-activite.html" class="bg-pine hover:bg-bangladesh-green text-anti-flash-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 border border-mountain-meadow/20">
-                        <i data-lucide="plus-circle" class="w-4 h-4 text-caribbean-green"></i>
-                        <span>Nouvelle Activité</span>
+
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <a href="formulaires/nouvelle-activite.html" class="bg-pine hover:bg-bangladesh-green text-anti-flash-white p-2 sm:px-4 sm:py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 border border-mountain-meadow/20" title="Nouvelle Activité">
+                        <i data-lucide="plus" class="w-5 h-5 text-caribbean-green sm:w-4 sm:h-4"></i>
+                        <span class="hidden sm:inline">Nouvelle Activité</span>
                     </a>
+
+                    <button id="btn-burger" class="md:hidden bg-dark-green hover:bg-pine text-anti-flash-white p-2 rounded-lg border border-pine transition">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
                 </div>
             </div>
+        </div>
+
+        <div id="menu-mobile" class="hidden md:hidden border-t border-pine bg-dark-green px-4 py-3 space-y-2">
+            <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium bg-pine text-caribbean-green flex items-center gap-3">
+                <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Tableau de bord
+            </a>
+            <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-stone hover:text-anti-flash-white hover:bg-pine/50 flex items-center gap-3 transition">
+                <i data-lucide="file-text" class="w-4 h-4"></i> Rapports
+            </a>
+            <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-stone hover:text-anti-flash-white hover:bg-pine/50 flex items-center gap-3 transition">
+                <i data-lucide="users" class="w-4 h-4"></i> Membres
+            </a>
+            <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-stone hover:text-anti-flash-white hover:bg-pine/50 flex items-center gap-3 transition">
+                <i data-lucide="settings" class="w-4 h-4"></i> Paramètres
+            </a>
         </div>
     </nav>
 
@@ -133,7 +156,27 @@
     <script src="config/app.js" type="module"></script>
     
     <script>
+        // Initialisation des icônes de base
         lucide.createIcons();
+
+        // Gestion de l'affichage du menu mobile
+        const btnBurger = document.getElementById('btn-burger');
+        const menuMobile = document.getElementById('menu-mobile');
+
+        if (btnBurger && menuMobile) {
+            btnBurger.addEventListener('click', () => {
+                menuMobile.classList.toggle('hidden');
+                
+                // Optionnel : Basculer l'icône entre menu (hamburger) et x (fermer)
+                const icon = btnBurger.querySelector('i');
+                if (menuMobile.classList.contains('hidden')) {
+                    icon.setAttribute('data-lucide', 'menu');
+                } else {
+                    icon.setAttribute('data-lucide', 'x');
+                }
+                lucide.createIcons(); // Recréer l'icône modifiée
+            });
+        }
     </script>
 </body>
 </html>

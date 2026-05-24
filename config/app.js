@@ -148,3 +148,11 @@ if (listeActivites) {
         }
     });
 }
+// --- 3. ENREGISTREMENT DU SERVICE WORKER (PWA) ---
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then((reg) => console.log('Service Worker enregistré avec succès ! Portée :', reg.scope))
+            .catch((err) => console.error('Échec de l\'enregistrement du Service Worker :', err));
+    });
+}

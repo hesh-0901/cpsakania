@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-rich-black text-anti-flash-white antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakania - Enregistrer une Activité</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rich-black': '#021B1A',
+                        'dark-green': '#032221',
+                        'bangladesh-green': '#03624C',
+                        'mountain-meadow': '#2CC295',
+                        'caribbean-green': '#00DF81',
+                        'anti-flash-white': '#F1F7F6',
+                        'pine': '#06302B',
+                        'mint': '#2FA98C',
+                        'stone': '#707D7D',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative overflow-y-auto bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-dark-green via-rich-black to-rich-black">
+
+    <div class="fixed inset-0 bg-rich-black/60 backdrop-blur-sm z-0"></div>
+
+    <div class="relative w-full max-w-2xl bg-dark-green border border-pine rounded-2xl shadow-2xl shadow-rich-black z-10 my-8 overflow-hidden">
+        
+        <div class="flex items-center justify-between px-6 py-4 border-b border-pine bg-rich-black/30">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-bangladesh-green/20 border border-bangladesh-green flex items-center justify-center text-caribbean-green">
+                    <i data-lucide="file-plus-2" class="w-4 h-4"></i>
+                </div>
+                <div>
+                    <h2 class="font-bold tracking-tight text-base">Rapport d'Activité</h2>
+                    <p class="text-[11px] text-stone">Cellule Sakania — Lubumbashi</p>
+                </div>
+            </div>
+            <a href="../index.html" class="p-1.5 rounded-lg bg-pine/50 hover:bg-pine text-stone hover:text-anti-flash-white transition border border-pine/50" title="Fermer et retourner à l'accueil">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </a>
+        </div>
+
+        <form id="form-nouvelle-activite" class="p-6 space-y-6">
+            
+            <div class="space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-mountain-meadow border-b border-pine pb-1">Généralités & Calendrier</h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Date</label>
+                        <input type="date" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Heure de Début</label>
+                        <input type="time" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Heure de Fin</label>
+                        <input type="time" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Type de Rencontre</label>
+                    <select id="select-type" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <option value="Culte ordinaire">Culte ordinaire</option>
+                        <option value="Descente évangélique">Descente évangélique</option>
+                        <option value="Veillée">Veillée</option>
+                        <option value="Autres">Autres (Préciser...)</option>
+                    </select>
+                </div>
+
+                <div id="wrapper-autre-type" class="hidden animate-fade-in">
+                    <label class="block text-[11px] font-semibold uppercase text-caribbean-green mb-1">Précisez le type de rencontre</label>
+                    <input type="text" id="input-autre-type" placeholder="Ex: Réunion de planification, Réunion des mamans..." class="w-full bg-rich-black border border-caribbean-green/40 rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-caribbean-green transition">
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-mountain-meadow border-b border-pine pb-1">Intervenants & Message</h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Modérateur</label>
+                        <input type="text" placeholder="Nom du modérateur" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Prédicateur</label>
+                        <input type="text" placeholder="Nom du prédicateur" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Thème du message</label>
+                    <input type="text" placeholder="Ex: Marcher dans la fidélité divine" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-mountain-meadow border-b border-pine pb-1">Statistiques & Offrandes</h3>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1" title="Nombre total de participants">Participants</label>
+                        <input type="number" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1" title="Nouveaux Venus">Nouv. Venus</label>
+                        <input type="number" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1" title="Ceux qui ont promis d'adhérer">Les Engagés</label>
+                        <input type="number" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Offrandes ($ ou FC)</label>
+                        <input type="text" placeholder="Ex: 45.000 FC" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-pine">
+                <a href="../index.html" class="px-4 py-2 rounded-lg text-sm font-medium text-stone hover:text-anti-flash-white hover:bg-pine/30 transition border border-transparent">
+                    Annuler
+                </a>
+                <button type="submit" class="bg-mountain-meadow hover:bg-caribbean-green text-rich-black font-bold px-5 py-2 rounded-lg text-sm transition shadow-lg shadow-mountain-meadow/10 flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4"></i> Enregistrer l'activité
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const selectType = document.getElementById('select-type');
+        const wrapperAutreType = document.getElementById('wrapper-autre-type');
+        const inputAutreType = document.getElementById('input-autre-type');
+
+        if (selectType && wrapperAutreType && inputAutreType) {
+            selectType.addEventListener('change', () => {
+                if (selectType.value === 'Autres') {
+                    wrapperAutreType.classList.remove('hidden');
+                    inputAutreType.setAttribute('required', 'required');
+                    inputAutreType.focus();
+                } else {
+                    wrapperAutreType.classList.add('hidden');
+                    inputAutreType.removeAttribute('required');
+                    inputAutreType.value = ''; // Reset si changé
+                }
+            });
+        }
+    </script>
+</body>
+</html>

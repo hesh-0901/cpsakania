@@ -7,7 +7,7 @@ import {
     orderBy 
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-// --- GESTION DES REQUÊTES & PAGINATION ---
+// --- INITIALISATION & VARIABLES DE PAGINATION ---
 let toutesLesActivites = [];
 let pageActuelle = 1;
 const elementsParPage = 4;
@@ -18,7 +18,7 @@ const btnNext = document.getElementById('btn-next');
 const txtCurrentPage = document.getElementById('current-page');
 const txtTotalPages = document.getElementById('total-pages');
 
-// Affichage du flux de la date du jour (Lubumbashi)
+// Affichage dynamique de la date du jour sur le tableau de bord
 const dateFlux = document.getElementById('date-flux');
 if (dateFlux) {
     const aujourdhui = new Date();
@@ -28,9 +28,10 @@ if (dateFlux) {
     `;
 }
 
-// Écouteur en temps réel de Firebase
+// Requête Firestore ordonnée par date de rencontre décroissante
 const q = query(collection(db, "activites"), orderBy("dateRencontre", "desc"));
 
+// Écouteur de flux en direct
 onSnapshot(q, (snapshot) => {
     toutesLesActivites = [];
     
@@ -41,14 +42,14 @@ onSnapshot(q, (snapshot) => {
         });
     });
 
-    // Recalculer les compteurs globaux du tableau de bord
+    // Recalcul automatique des blocs de statistiques en haut
     calculerStatistiques(toutesLesActivites);
 
-    // Mettre à jour l'affichage de la page actuelle
+    // Mettre à jour et rafraîchir l'affichage de la page courante
     afficherPage(pageActuelle);
 });
 
-// Calcul des blocs statistiques du haut
+// Traitement des données pour alimenter les compteurs du tableau de bord
 function calculerStatistiques(activites) {
     const statReunions = document.getElementById('stat-reunions');
     const statMembres = document.getElementById('stat-membres');
@@ -58,39 +59,43 @@ function calculerStatistiques(activites) {
     if (!activites.length) {
         if (statReunions) statReunions.innerText = "0";
         if (statMembres) statMembres.innerText = "0";
-        if (statPresence) statPresence.innerText = "0%";
+        if (statPresence) statPresence.innerText = "0";
         if (statSocial) statSocial.innerText = "0";
         return;
     }
 
-    // 1. Réunions ce mois
+    // 1. Nombre total de réunions enregistrées
     if (statReunions) statReunions.innerText = activites.length;
-    document.getElementById('evolution-reunions').innerText = "Total des rencontres";
+    const evoReunions = document.getElementById('evolution-reunions');
+    if (evoReunions) evoReunions.innerText = "Total des rencontres";
 
-    // 2. Cumul des participants (Simulé ou basé sur le dernier culte pour les membres actifs)
+    // 2. Présence enregistrée au tout dernier culte (index 0 car trié par date)
     const dernierCulte = activites[0];
     if (statMembres) statMembres.innerText = dernierCulte.participants || 0;
-    document.getElementById('evolution-membres').innerText = "Au dernier culte";
+    const evoMembres = document.getElementById('evolution-membres');
+    if (evoMembres) evoMembres.innerText = "Au dernier culte";
 
-    // 3. Évolution des nouveaux engagés
-    const totalEngages = activites.reduce((acc, curr) => acc + (curr.lesEngages || 0), 0);
+    // 3. Cumul total de tous les nouveaux engagés enregistrés
+    const totalEngages = activites.reduce((acc, curr) => acc + (parseInt(curr.lesEngages) || 0), 0);
     if (statPresence) statPresence.innerText = `+${totalEngages}`;
-    document.getElementById('evolution-presence').innerText = "Nouveaux engagés cumulés";
+    const evoPresence = document.getElementById('evolution-presence');
+    if (evoPresence) evoPresence.innerText = "Nouveaux engagés cumulés";
 
-    // 4. Descentes évangéliques ou actions spéciales
+    // 4. Nombre de descentes évangéliques comptabilisées
     const actionsEvangeliques = activites.filter(act => act.type === "Descente évangélique").length;
     if (statSocial) statSocial.innerText = actionsEvangeliques;
-    document.getElementById('evolution-social').innerText = "Descentes évangéliques";
+    const evoSocial = document.getElementById('evolution-social');
+    if (evoSocial) evoSocial.innerText = "Descentes évangéliques";
 }
 
-// Rendu de la page spécifique
+// Découpage et injection HTML des activités (Optimisé PC & Smartphone)
 function afficherPage(page) {
     if (!listeActivites) return;
     listeActivites.innerHTML = "";
 
     if (toutesLesActivites.length === 0) {
         listeActivites.innerHTML = `
-            <div class="p-6 text-center text-stone text-sm bg-rich-black/30 border border-pine rounded-xl">
+            <div class="p-8 text-center text-stone text-sm bg-rich-black/30 border border-pine rounded-xl">
                 Aucune activité enregistrée pour le moment.
             </div>`;
         mettreAjourBoutonsPagination(0);
@@ -101,14 +106,14 @@ function afficherPage(page) {
     if (page > totalPages) page = totalPages;
     pageActuelle = page;
 
-    // Découpage du tableau pour l'affichage des 4 éléments de la page active
+    // Extraction des 4 fiches de la page courante
     const indexDebut = (pageActuelle - 1) * elementsParPage;
     const indexFin = indexDebut + elementsParPage;
     const activitesVisibles = toutesLesActivites.slice(indexDebut, indexFin);
 
     activitesVisibles.forEach((donnees) => {
-        // Formatage de la date de la rencontre (champ du formulaire)
-        let dateFormatee = "Date inconnue";
+        // Redimensionnement de la date (AAAA-MM-JJ en JJ/MM)
+        let dateFormatee = "—";
         if (donnees.dateRencontre) {
             const fragments = donnees.dateRencontre.split('-');
             if (fragments.length === 3) {
@@ -116,22 +121,21 @@ function afficherPage(page) {
             }
         }
 
-        // Assignation dynamique de l'icône selon le type
+        // Attribution d'une icône cohérente selon la catégorie
         let icone = "book-open";
         let couleurIcone = "text-mountain-meadow";
-        if (donnees.type.includes("Veillée") || donnees.type.includes("Prière")) {
+        if (donnees.type && (donnees.type.includes("Veillée") || donnees.type.includes("Prière"))) {
             icone = "flame";
             couleurIcone = "text-caribbean-green";
-        } else if (donnees.type.includes("Descente") || donnees.type.includes("évangélique")) {
+        } else if (donnees.type && (donnees.type.includes("Descente") || donnees.type.includes("évangélique"))) {
             icone = "compass";
             couleurIcone = "text-caribbean-green";
         }
 
-        // Injection du HTML de l'activité avec gestion optimisée PC / Téléphone
-        // Ajout de cursor-pointer pour indiquer visuellement le clic
+        // Rendu structurel flexible et cliquable (`cursor-pointer`)
         const itemHTML = `
             <div data-id="${donnees.id}" class="item-activite p-4 bg-rich-black/50 border border-pine rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-caribbean-green/50 hover:bg-pine/10 transition cursor-pointer select-none">
-                <div class="flex items-start gap-3">
+                <div class="flex items-start gap-3 min-w-0">
                     <div class="p-2 bg-bangladesh-green/20 border border-bangladesh-green/40 rounded-lg ${couleurIcone} shrink-0 mt-0.5">
                         <i data-lucide="${icone}" class="w-4 h-4"></i>
                     </div>
@@ -142,15 +146,15 @@ function afficherPage(page) {
                         <p class="text-xs text-stone mt-0.5 truncate">
                             Thème : <span class="text-anti-flash-white font-medium">"${donnees.theme}"</span>
                         </p>
-                        <p class="text-[11px] text-stone mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
-                            <span>Mod. : <span class="text-mint font-medium">${donnees.moderateur}</span></span>
-                            <span class="text-pine">|</span>
-                            <span>Préd. : <span class="text-mountain-meadow font-medium">${donnees.predicateur}</span></span>
-                        </p>
+                        <div class="text-[11px] text-stone mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                            <span class="truncate">Mod. : <span class="text-mint font-medium">${donnees.moderateur}</span></span>
+                            <span class="text-pine hidden sm:inline">|</span>
+                            <span class="truncate">Préd. : <span class="text-mountain-meadow font-medium">${donnees.predicateur}</span></span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t border-pine/30 sm:border-0">
+                <div class="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t border-pine/30 sm:border-0 shrink-0">
                     <div class="text-[11px] text-stone">
                         Présents : <span class="text-anti-flash-white font-semibold">${donnees.participants}</span>
                     </div>
@@ -166,17 +170,17 @@ function afficherPage(page) {
         listeActivites.innerHTML += itemHTML;
     });
 
-    // Rendre les icônes injectées visibles
+    // Forcer Lucide à dessiner les icônes injectées
     if (window.lucide) window.lucide.createIcons();
 
-    // Activer l'écouteur de clic sur chaque conteneur d'activité pour réouverture
+    // Associer les écouteurs de clics pour la réouverture des formulaires
     attacherEvenementsClic();
 
-    // Ajuster l'état des boutons de navigation
+    // Adapter l'activation des boutons Précédent / Suivant
     mettreAjourBoutonsPagination(totalPages);
 }
 
-// Gestion des états graphiques des boutons Précédent / Suivant
+// Contrôle de l'état graphique et technique de la pagination
 function mettreAjourBoutonsPagination(totalPages) {
     if (txtCurrentPage) txtCurrentPage.innerText = pageActuelle;
     if (txtTotalPages) txtTotalPages.innerText = totalPages === 0 ? "1" : totalPages;
@@ -185,21 +189,20 @@ function mettreAjourBoutonsPagination(totalPages) {
     if (btnNext) btnNext.disabled = (pageActuelle >= totalPages || totalPages === 0);
 }
 
-// Redirection au clic vers le formulaire avec injection de l'ID dans l'URL
+// Redirection dynamique : Ajoute l'ID unique de Firestore dans l'URL de destination
 function attacherEvenementsClic() {
     const cartes = document.querySelectorAll('.item-activite');
     cartes.forEach(carte => {
         carte.addEventListener('click', () => {
             const idActivite = carte.getAttribute('data-id');
             if (idActivite) {
-                // Renvoyer vers le dossier formulaire avec le paramètre d'identification
                 window.location.href = `formulaires/activite.html?id=${idActivite}`;
             }
         });
     });
 }
 
-// Événements sur les boutons de navigation de la pagination
+// Événement d'appui sur le bouton "Précédent"
 if (btnPrev) {
     btnPrev.addEventListener('click', () => {
         if (pageActuelle > 1) {
@@ -209,6 +212,7 @@ if (btnPrev) {
     });
 }
 
+// Événement d'appui sur le bouton "Suivant"
 if (btnNext) {
     btnNext.addEventListener('click', () => {
         const totalPages = Math.ceil(toutesLesActivites.length / elementsParPage);

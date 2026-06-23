@@ -131,13 +131,13 @@
             </div>
         </div>
 
-        <div class="w-full bg-dark-green border border-pine p-6 rounded-2xl">
+        <div class="w-full bg-dark-green border border-pine p-4 sm:p-6 rounded-2xl">
             <div class="flex items-center justify-between mb-6">
-                <h3 class="text-lg font-bold flex items-center gap-2">
+                <h3 class="text-base sm:text-lg font-bold flex items-center gap-2">
                     <i data-lucide="history" class="text-mountain-meadow w-5 h-5"></i>
                     Dernières Activités Enregistrées
                 </h3>
-                <span class="text-xs text-stone bg-pine/50 px-3 py-1 rounded-full border border-pine">Mise à jour en direct</span>
+                <span class="text-[10px] sm:text-xs text-stone bg-pine/50 px-2.5 py-1 rounded-full border border-pine">Mise à jour en direct</span>
             </div>
 
             <div id="liste-activites" class="space-y-4">
@@ -145,6 +145,20 @@
                     <div class="w-6 h-6 border-2 border-caribbean-green border-t-transparent rounded-full animate-spin"></div>
                     <span>Connexion à la base de données de la cellule...</span>
                 </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-6 mt-6 border-t border-pine text-xs sm:text-sm">
+                <button id="btn-prev" disabled class="px-3 py-1.5 rounded-lg bg-pine/30 border border-pine text-stone disabled:opacity-30 disabled:cursor-not-allowed hover:bg-pine hover:text-anti-flash-white transition flex items-center gap-1">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i> Précédent
+                </button>
+                
+                <span id="txt-pagination" class="text-stone font-medium tracking-wide">
+                    Page <span id="current-page" class="text-caribbean-green">1</span> / <span id="total-pages">...</span>
+                </span>
+
+                <button id="btn-next" disabled class="px-3 py-1.5 rounded-lg bg-pine/30 border border-pine text-stone disabled:opacity-30 disabled:cursor-not-allowed hover:bg-pine hover:text-anti-flash-white transition flex items-center gap-1">
+                    Suivant <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
             </div>
         </div>
 
@@ -154,27 +168,24 @@
         <p>© 2026 Église La Compassion Lubumbashi — Cellule Sakania. Tous droits réservés.</p>
     </footer>
 
-    <script src="config/app.js" type="module"></script>
+    <script src="js/index.js" type="module"></script>
     
     <script>
-        // Initialisation des icônes de base
         lucide.createIcons();
 
-        // Gestion de l'affichage du menu mobile
         const btnBurger = document.getElementById('btn-burger');
         const menuMobile = document.getElementById('menu-mobile');
 
         if (btnBurger && menuMobile) {
             btnBurger.addEventListener('click', () => {
                 menuMobile.classList.toggle('hidden');
-                
                 const icon = btnBurger.querySelector('i');
                 if (menuMobile.classList.contains('hidden')) {
                     icon.setAttribute('data-lucide', 'menu');
                 } else {
                     icon.setAttribute('data-lucide', 'x');
                 }
-                lucide.createIcons(); // Recréer l'icône modifiée
+                lucide.createIcons();
             });
         }
     </script>

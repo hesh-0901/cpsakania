@@ -55,15 +55,15 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Date</label>
-                        <input type="date" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="date" id="input-date" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Heure de Début</label>
-                        <input type="time" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="time" id="input-heure-debut" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Heure de Fin</label>
-                        <input type="time" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="time" id="input-heure-fin" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                 </div>
 
@@ -89,17 +89,17 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Modérateur</label>
-                        <input type="text" placeholder="Nom du modérateur" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="text" id="input-moderateur" placeholder="Nom du modérateur" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Prédicateur</label>
-                        <input type="text" placeholder="Nom du prédicateur" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="text" id="input-predicateur" placeholder="Nom du prédicateur" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Thème du message</label>
-                    <input type="text" placeholder="Ex: Marcher dans la fidélité divine" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    <input type="text" id="input-theme" placeholder="Ex: Marcher dans la fidélité divine" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                 </div>
             </div>
 
@@ -109,19 +109,19 @@
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1" title="Nombre total de participants">Participants</label>
-                        <input type="number" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="number" id="input-participants" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1" title="Nouveaux Venus">Nouv. Venus</label>
-                        <input type="number" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="number" id="input-nouveaux" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1" title="Ceux qui ont promis d'adhérer">Les Engagés</label>
-                        <input type="number" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="number" id="input-engages" min="0" placeholder="0" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Offrandes ($ ou FC)</label>
-                        <input type="text" placeholder="Ex: 45.000 FC" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                        <input type="text" id="input-offrandes" placeholder="Ex: 45.000 FC" required class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                 <h3 class="text-xs font-bold uppercase tracking-wider text-mountain-meadow border-b border-pine pb-1">Remarques & Observations</h3>
                 <div>
                     <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Notes particulières</label>
-                    <textarea rows="3" placeholder="Ex: Requêtes de prière spéciales, incidents, climat, ou événements marquants durant la rencontre..." class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition resize-none"></textarea>
+                    <textarea id="textarea-remarques" rows="3" placeholder="Ex: Requêtes de prière spéciales, incidents, climat, ou événements marquants durant la rencontre..." class="w-full bg-rich-black border border-pine rounded-lg px-3 py-2 text-sm text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition resize-none"></textarea>
                 </div>
             </div>
 
@@ -144,6 +144,8 @@
             </div>
         </form>
     </div>
+
+    <script src="../config/app.js" type="module"></script>
 
     <script>
         lucide.createIcons();
@@ -161,7 +163,7 @@
                 } else {
                     wrapperAutreType.classList.add('hidden');
                     inputAutreType.removeAttribute('required');
-                    inputAutreType.value = ''; // Reset si changé
+                    inputAutreType.value = '';
                 }
             });
         }

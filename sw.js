@@ -1,14 +1,22 @@
 // sw.js - Service Worker pour la Cellule Sakania
 
-// 1. CHANGER LE VERSIONNING ICI À CHAQUE MISE À JOUR
-const CACHE_NAME = 'sakania-cache-v1.0.0';
+// 1. CHANGER LE VERSIONNING ICI À CHAQUE MISE À JOUR (Passage à v1.1.0)
+const CACHE_NAME = 'sakania-cache-v1.1.0';
 
-// Liste des fichiers à mettre en cache pour le mode hors-ligne
+// Liste mise à jour avec l'arborescence ERP complète
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './tailwind.config.js',
   './manifest.json',
+  './config/app.js',
+  './js/index.js',
+  './formulaires/activite.html',
+  './formulaires/activite.js',
+  './rapports/cultes.html',
+  './rapports/cultes.js',
+  './rapports/caisse.html',
+  './rapports/caisse.js',
   'https://cdn.tailwindcss.com',
   'https://unpkg.com/lucide@latest'
 ];

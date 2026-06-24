@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-rich-black text-anti-flash-white antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Cultes & Réunions — ERP Sakania</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rich-black': '#021B1A',
+                        'dark-green': '#032221',
+                        'bangladesh-green': '#03624C',
+                        'mountain-meadow': '#2CC295',
+                        'caribbean-green': '#00DF81',
+                        'anti-flash-white': '#F1F7F6',
+                        'pine': '#06302B',
+                        'mint': '#2FA98C',
+                        'stone': '#707D7D',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-dark-green via-rich-black to-rich-black">
+
+    <header class="border-b border-pine bg-dark-green/40 backdrop-blur-md px-4 sm:px-8 py-4 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <a href="../index.html" class="p-2 rounded-lg bg-pine/40 hover:bg-pine border border-pine text-stone hover:text-anti-flash-white transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            </a>
+            <div>
+                <h1 class="font-bold text-sm sm:text-base tracking-tight uppercase text-mountain-meadow">Module : Registre des Cultes</h1>
+                <p class="text-[10px] text-stone">Vue tableur ERP — Données centralisées</p>
+            </div>
+        </div>
+        <div class="text-xs bg-pine/30 px-3 py-1 rounded-full border border-pine text-stone">
+            Filtre automatique : Rencontres
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6">
+        <div class="bg-dark-green border border-pine rounded-2xl overflow-hidden shadow-xl">
+            
+            <div class="hidden md:block overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-rich-black/60 border-b border-pine text-stone font-semibold uppercase tracking-wider">
+                            <th class="py-3 px-4 w-20">Date</th>
+                            <th class="py-3 px-4">Type de Culte</th>
+                            <th class="py-3 px-4">Thème du message</th>
+                            <th class="py-3 px-4">Prédicateur</th>
+                            <th class="py-3 px-4 text-center">Présents</th>
+                            <th class="py-3 px-4 text-right">Offrandes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-cultes-pc" class="divide-y divide-pine/30">
+                        <tr>
+                            <td colspan="6" class="py-8 text-center text-stone">
+                                <div class="w-5 h-5 border-2 border-mountain-meadow border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+                                Connexion au registre des cultes...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="list-cultes-mobile" class="block md:hidden divide-y divide-pine/30 text-xs">
+                <div class="p-6 text-center text-stone">
+                    Chargement du registre mobile...
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="cultes.js" type="module"></script>
+</body>
+</html>

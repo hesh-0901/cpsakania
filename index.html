@@ -43,9 +43,23 @@
                     </div>
                 </div>
 
-                <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium h-full">
                     <a href="#" class="text-caribbean-green border-b-2 border-caribbean-green px-1 py-5">Tableau de bord</a>
-                    <a href="#" class="text-stone hover:text-anti-flash-white transition px-1 py-5">Rapports</a>
+                    
+                    <div class="relative group h-full flex items-center">
+                        <button class="text-stone hover:text-anti-flash-white transition flex items-center gap-1 py-5 focus:outline-none">
+                            Rapports <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute top-14 left-0 w-44 bg-dark-green border border-pine rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-1.5 backdrop-blur-md">
+                            <a href="rapports/caisse.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-stone hover:text-anti-flash-white hover:bg-pine/50 transition">
+                                <i data-lucide="wallet" class="w-4 h-4 text-caribbean-green"></i> Caisse
+                            </a>
+                            <a href="rapports/cultes.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-stone hover:text-anti-flash-white hover:bg-pine/50 transition">
+                                <i data-lucide="calendar-days" class="w-4 h-4 text-mountain-meadow"></i> Cultes
+                            </a>
+                        </div>
+                    </div>
+
                     <a href="#" class="text-stone hover:text-anti-flash-white transition px-1 py-5">Membres</a>
                     <a href="#" class="text-stone hover:text-anti-flash-white transition px-1 py-5">Paramètres</a>
                 </div>
@@ -67,9 +81,17 @@
             <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium bg-pine text-caribbean-green flex items-center gap-3">
                 <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Tableau de bord
             </a>
-            <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-stone hover:text-anti-flash-white hover:bg-pine/50 flex items-center gap-3 transition">
-                <i data-lucide="file-text" class="w-4 h-4"></i> Rapports
-            </a>
+            
+            <div class="space-y-1 pl-3 border-l border-pine/50">
+                <span class="block px-3 py-1 text-[11px] font-bold text-stone uppercase tracking-wider">Rapports</span>
+                <a href="rapports/caisse.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-stone hover:text-anti-flash-white hover:bg-pine/50 flex items-center gap-3 transition">
+                    <i data-lucide="wallet" class="w-4 h-4 text-caribbean-green"></i> Caisse
+                </a>
+                <a href="rapports/cultes.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-stone hover:text-anti-flash-white hover:bg-pine/50 flex items-center gap-3 transition">
+                    <i data-lucide="calendar-days" class="w-4 h-4 text-mountain-meadow"></i> Cultes
+                </a>
+            </div>
+
             <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-stone hover:text-anti-flash-white hover:bg-pine/50 flex items-center gap-3 transition">
                 <i data-lucide="users" class="w-4 h-4"></i> Membres
             </a>
@@ -93,7 +115,6 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            
             <div class="bg-dark-green border border-pine p-5 rounded-2xl">
                 <div class="flex items-center justify-between mb-3">
                     <span class="text-xs font-semibold uppercase tracking-wider text-stone">Réunions ce mois</span>
@@ -135,15 +156,14 @@
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-base sm:text-lg font-bold flex items-center gap-2">
                     <i data-lucide="history" class="text-mountain-meadow w-5 h-5"></i>
-                    Dernières Activités Enregistrées
+                    Flux Général en Direct
                 </h3>
-                <span class="text-[10px] sm:text-xs text-stone bg-pine/50 px-2.5 py-1 rounded-full border border-pine">Mise à jour en direct</span>
             </div>
 
             <div id="liste-activites" class="space-y-4">
                 <div class="p-8 text-center text-stone text-sm flex flex-col items-center justify-center gap-3">
                     <div class="w-6 h-6 border-2 border-caribbean-green border-t-transparent rounded-full animate-spin"></div>
-                    <span>Connexion à la base de données de la cellule...</span>
+                    <span>Chargement du flux...</span>
                 </div>
             </div>
 
@@ -151,17 +171,14 @@
                 <button id="btn-prev" disabled class="px-3 py-1.5 rounded-lg bg-pine/30 border border-pine text-stone disabled:opacity-30 disabled:cursor-not-allowed hover:bg-pine hover:text-anti-flash-white transition flex items-center gap-1">
                     <i data-lucide="chevron-left" class="w-4 h-4"></i> Précédent
                 </button>
-                
-                <span id="txt-pagination" class="text-stone font-medium tracking-wide">
+                <span id="txt-pagination" class="text-stone font-medium">
                     Page <span id="current-page" class="text-caribbean-green">1</span> / <span id="total-pages">...</span>
                 </span>
-
                 <button id="btn-next" disabled class="px-3 py-1.5 rounded-lg bg-pine/30 border border-pine text-stone disabled:opacity-30 disabled:cursor-not-allowed hover:bg-pine hover:text-anti-flash-white transition flex items-center gap-1">
                     Suivant <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </button>
             </div>
         </div>
-
     </main>
 
     <footer class="border-t border-pine bg-dark-green/30 py-6 mt-12 text-center text-xs text-stone">
@@ -169,22 +186,15 @@
     </footer>
 
     <script src="js/index.js" type="module"></script>
-    
     <script>
         lucide.createIcons();
-
         const btnBurger = document.getElementById('btn-burger');
         const menuMobile = document.getElementById('menu-mobile');
-
         if (btnBurger && menuMobile) {
             btnBurger.addEventListener('click', () => {
                 menuMobile.classList.toggle('hidden');
                 const icon = btnBurger.querySelector('i');
-                if (menuMobile.classList.contains('hidden')) {
-                    icon.setAttribute('data-lucide', 'menu');
-                } else {
-                    icon.setAttribute('data-lucide', 'x');
-                }
+                icon.setAttribute('data-lucide', menuMobile.classList.contains('hidden') ? 'menu' : 'x');
                 lucide.createIcons();
             });
         }

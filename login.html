@@ -26,44 +26,84 @@
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-dark-green via-rich-black to-rich-black">
+<body class="min-h-screen flex items-center justify-center p-4 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-dark-green via-rich-black to-rich-black relative overflow-hidden">
 
-    <div class="w-full max-w-sm bg-dark-green border border-pine p-6 rounded-2xl shadow-2xl relative overflow-hidden">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-caribbean-green/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="w-full max-w-sm bg-dark-green/60 backdrop-blur-md border border-pine/80 p-6 sm:p-8 rounded-2xl shadow-[0_20px_50px_rgba(2,_27,_26,_0.8)] relative z-10">
         
-        <div class="text-center mb-6">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-bangladesh-green to-caribbean-green flex items-center justify-center shadow-lg shadow-caribbean-green/10 mx-auto mb-3">
-                <i data-lucide="lock" class="w-5 h-5 text-rich-black font-bold"></i>
+        <div class="text-center mb-8">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-bangladesh-green via-pine to-caribbean-green flex items-center justify-center shadow-xl shadow-caribbean-green/5 mx-auto mb-4 border border-mountain-meadow/20">
+                <i data-lucide="shield-check" class="w-6 h-6 text-caribbean-green"></i>
             </div>
-            <h2 class="text-xl font-bold tracking-tight">Portail ERP Sakania</h2>
-            <p class="text-stone text-xs mt-1">Veuillez vous authentifier pour accéder aux modules.</p>
+            <h2 class="text-xl font-black tracking-wider uppercase text-anti-flash-white">Portail ERP</h2>
+            <p class="text-stone text-[11px] mt-1 tracking-wide uppercase">Cellule Sakania</p>
         </div>
 
-        <div id="error-message" class="hidden mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-xs font-medium text-center"></div>
+        <div id="error-message" class="hidden mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-medium text-center animate-pulse"></div>
 
         <form id="form-login" class="space-y-4">
             <div>
-                <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Adresse Email</label>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-stone mb-1.5">Identifiant / Pseudo</label>
                 <div class="relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-stone"><i data-lucide="mail" class="w-4 h-4"></i></span>
-                    <input type="email" id="login-email" placeholder="admin@sakania.org" required class="w-full bg-rich-black border border-pine rounded-lg pl-10 pr-3 py-2 text-xs text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
-                </div>
-            </div>
-            <div>
-                <label class="block text-[11px] font-semibold uppercase text-stone mb-1">Mot de passe</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-stone"><i data-lucide="key-round" class="w-4 h-4"></i></span>
-                    <input type="password" id="login-password" placeholder="••••••••" required class="w-full bg-rich-black border border-pine rounded-lg pl-10 pr-3 py-2 text-xs text-anti-flash-white focus:outline-none focus:border-mountain-meadow transition">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone"><i data-lucide="user" class="w-4 h-4"></i></span>
+                    <input type="text" id="login-email" placeholder="Ex: samuel" required class="w-full bg-rich-black/80 border border-pine/60 rounded-xl pl-10 pr-4 py-2.5 text-xs text-anti-flash-white placeholder:text-stone/50 focus:outline-none focus:border-caribbean-green focus:ring-1 focus:ring-caribbean-green/20 transition-all font-medium">
                 </div>
             </div>
 
-            <button type="submit" id="btn-submit" class="w-full bg-caribbean-green hover:bg-mountain-meadow text-rich-black font-bold py-2.5 rounded-lg text-xs transition flex items-center justify-center gap-2 mt-2">
-                <i data-lucide="log-in" class="w-4 h-4"></i> Se connecter
+            <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-stone mb-1.5">Code Secret</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone"><i data-lucide="key-round" class="w-4 h-4"></i></span>
+                    
+                    <input type="password" id="login-password" placeholder="••••••••" required class="w-full bg-rich-black/80 border border-pine/60 rounded-xl pl-10 pr-11 py-2.5 text-xs text-anti-flash-white placeholder:text-stone/50 focus:outline-none focus:border-caribbean-green focus:ring-1 focus:ring-caribbean-green/20 transition-all font-mono tracking-widest">
+                    
+                    <button type="button" id="btn-toggle-password" class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-stone hover:text-mountain-meadow transition">
+                        <i data-lucide="eye" id="icon-eye" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" id="btn-submit" class="w-full bg-caribbean-green hover:bg-mountain-meadow text-rich-black font-black py-3 rounded-xl text-xs uppercase tracking-wider transition-all shadow-lg shadow-caribbean-green/10 flex items-center justify-center gap-2 mt-6 active:scale-[0.98]">
+                <i data-lucide="log-in" class="w-4 h-4 stroke-[2.5]"></i> Accéder à l'espace
             </button>
         </form>
+
+        <div class="relative flex py-4 items-center my-2">
+            <div class="flex-grow border-t border-pine/30"></div>
+            <span class="flex-shrink mx-3 text-[10px] text-stone uppercase tracking-widest">Nouveau ?</span>
+            <div class="flex-grow border-t border-pine/30"></div>
+        </div>
+
+        <div class="text-center">
+            <a href="register.html" class="inline-flex items-center gap-1.5 text-xs text-mountain-meadow hover:text-caribbean-green font-semibold transition group">
+                Créer un compte collaborateur
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
 
     </div>
 
     <script src="js/login.js" type="module"></script>
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+
+        // Logique interactive pour masquer/afficher le mot de passe
+        const btnToggle = document.getElementById('btn-toggle-password');
+        const inputPassword = document.getElementById('login-password');
+        const iconEye = document.getElementById('icon-eye');
+
+        btnToggle.addEventListener('click', () => {
+            if (inputPassword.type === 'password') {
+                inputPassword.type = 'text';
+                iconEye.setAttribute('data-lucide', 'eye-off');
+            } else {
+                inputPassword.type = 'password';
+                iconEye.setAttribute('data-lucide', 'eye');
+            }
+            // Recréer uniquement l'icône modifiée de Lucide
+            lucide.createIcons();
+        });
+    </script>
 </body>
 </html>
